@@ -265,7 +265,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 88
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &176207363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +302,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
@@ -385,8 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filename: Test
   rockPrefab: {fileID: 7993378856290230585, guid: 8acfa54be4365cf4b9a696c00d32d1a8, type: 3}
-  brickPrefab: {fileID: 0}
-  questionBoxPrefab: {fileID: 0}
+  brickPrefab: {fileID: 5004872059726228771, guid: ce8460b48c3cb164eb8d5ebb905cfd9e, type: 3}
+  questionBoxPrefab: {fileID: 5004872059726228771, guid: 53835d90a0e28fe4f8a7b2e959742e6f, type: 3}
   stonePrefab: {fileID: 5004872059726228771, guid: e6f4bc5b4b9294140a55771c1dbb9c7a, type: 3}
   environmentRoot: {fileID: 727678647}
 --- !u!1 &607740789
@@ -870,8 +870,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.25, y: 7.5, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.250001, y: 7.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1069,7 +1069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1185759021
 Rigidbody:
   m_ObjectHideFlags: 0

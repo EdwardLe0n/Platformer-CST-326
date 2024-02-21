@@ -7,7 +7,7 @@ public class CharacterController : MonoBehaviour
 
     public float speed = 10f;
     public float maxSpeed = 10f;
-    public float jumpImpulse = 20f;
+    public float jumpImpulse = 30f;
     public float jumpBoost = 5f;
     public bool isGrounded = false;
 
@@ -34,7 +34,7 @@ public class CharacterController : MonoBehaviour
 
         // Capsule
         Collider col = GetComponent<Collider>();
-        float halfHeight = col.bounds.extents.y + 0.03f;
+        float halfHeight = col.bounds.extents.y/4 + 0.03f;
 
         Vector3 startPoint = transform.position;
         Vector3 endpoint = startPoint + Vector3.down * halfHeight;

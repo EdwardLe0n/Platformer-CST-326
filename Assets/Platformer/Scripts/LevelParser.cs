@@ -72,6 +72,16 @@ public class LevelParser : MonoBehaviour
                     Vector3 newPos = new Vector3(column + 0.5f, row + 0.5f, 0f);
                     GameObject newObj = Instantiate(stonePrefab, newPos, Quaternion.identity, environmentRoot);
                 }
+                else if (letter == 'b')
+                {
+                    Vector3 newPos = new Vector3(column + 0.5f, row + 0.5f, 0f);
+                    GameObject newObj = Instantiate(brickPrefab, newPos, Quaternion.identity, environmentRoot);
+                }
+                else if (letter == '?')
+                {
+                    Vector3 newPos = new Vector3(column + 0.5f, row + 0.5f, 0f);
+                    GameObject newObj = Instantiate(questionBoxPrefab, newPos, Quaternion.identity, environmentRoot);
+                }
 
             }
 

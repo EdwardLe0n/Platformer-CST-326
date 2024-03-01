@@ -9,6 +9,8 @@ public class LevelParser : MonoBehaviour
     public GameObject brickPrefab;
     public GameObject questionBoxPrefab;
     public GameObject stonePrefab;
+    public GameObject waterPrefab;
+    public GameObject pillarPrefab;
     public Transform environmentRoot;
 
     // --------------------------------------------------------------------------
@@ -81,6 +83,16 @@ public class LevelParser : MonoBehaviour
                 {
                     Vector3 newPos = new Vector3(column + 0.5f, row + 0.5f, 0f);
                     GameObject newObj = Instantiate(questionBoxPrefab, newPos, Quaternion.identity, environmentRoot);
+                }
+                else if (letter == 'p')
+                {
+                    Vector3 newPos = new Vector3(column + 0.5f, row + 6f, 0f);
+                    GameObject newObj = Instantiate(pillarPrefab, newPos, Quaternion.identity, environmentRoot);
+                }
+                else if (letter == 'w')
+                {
+                    Vector3 newPos = new Vector3(column + 0.5f, row + 0.5f, 0f);
+                    GameObject newObj = Instantiate(waterPrefab, newPos, Quaternion.identity, environmentRoot);
                 }
 
             }

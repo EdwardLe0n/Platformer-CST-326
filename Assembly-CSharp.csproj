@@ -65,6 +65,7 @@
     <Compile Include="Assets\Platformer\Scripts\GameManagerScript.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Resources\Test 1.txt" />
     <None Include="Assets\Resources\Test.txt" />
   </ItemGroup>
   <ItemGroup>

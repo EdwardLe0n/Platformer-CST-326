@@ -65,4 +65,10 @@ public class GameManagerScript : MonoBehaviour
     {
         currentScore += 100;
     }
+
+    public void endLevel()
+    {
+        levelCompleted = true;
+    }
+
 }

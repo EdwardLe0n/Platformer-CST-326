@@ -10,6 +10,9 @@ public class CharacterController : MonoBehaviour
     public float jumpImpulse = 30f;
     public float jumpBoost = 5f;
     public bool isGrounded = false;
+    public bool inWater = false;
+
+    public GameObject gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,19 @@ public class CharacterController : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Flag")
+        {
+            Debug.Log("Beat Level");
+            gameManager.GetComponent<GameManagerScript>().endLevel();
+        }
+        else if (collision.gameObject.tag == "Water")
+        {
+            Debug.Log("Water");
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -34,10 +50,10 @@ public class CharacterController : MonoBehaviour
 
         // Capsule
         Collider col = GetComponent<Collider>();
-        float halfHeight = col.bounds.extents.y;
+        float halfHeight = col.bounds.extents.y / 4f;
 
         Vector3 startPoint = transform.position;
-        startPoint.y += 0.01f;
+        startPoint.y += 0.3f;
         Vector3 endpoint = startPoint + Vector3.down * halfHeight;
 
 
@@ -50,14 +66,28 @@ public class CharacterController : MonoBehaviour
             {
                 isGrounded = true;
             }
+            else if(hit.collider.gameObject.tag == "Water")
+            {
+                isGrounded = false;
+                inWater = true;
+
+                Debug.Log("Water");
+            }
             else
             {
+                //Debug.Log("Normie Air");
                 isGrounded = false;
             }
         }
         else
         {
             isGrounded = false;
+            //Debug.Log("Other Air");
+        }
+
+        if (inWater)
+        {
+            speed = 0f;
         }
 
         Color lineColor = (isGrounded) ? Color.red: Color.blue;
@@ -79,7 +109,7 @@ public class CharacterController : MonoBehaviour
         {
             Vector3 newVel = rbody.velocity;
             newVel.x = Mathf.Clamp(newVel.x, -maxSpeed, maxSpeed);
-            Debug.Log("Clamped");
+            //Debug.Log("Clamped");
             rbody.velocity = newVel;
         }
 

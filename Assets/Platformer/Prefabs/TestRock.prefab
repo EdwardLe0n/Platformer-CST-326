@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4464520316563367035}
   m_Layer: 6
   m_Name: TestRock
-  m_TagString: Untagged
+  m_TagString: WObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

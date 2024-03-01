@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     public bool isGrounded = false;
 
     public GameObject gameManager;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,11 @@ public class CameraController : MonoBehaviour
     void Update()
     {
 
-        float horizontalMovement = Input.GetAxis("Horizontal");
+        Rigidbody rbody = GetComponent<Rigidbody>();
+        Rigidbody pRBody = player.GetComponent<Rigidbody>();
+        rbody.position = new Vector3(pRBody.position.x, rbody.position.y, rbody.position.z);
+
+        /*float horizontalMovement = Input.GetAxis("Horizontal");
         Rigidbody rbody = GetComponent<Rigidbody>();
         rbody.velocity += Vector3.right * horizontalMovement * Time.deltaTime * speed;
 
@@ -48,7 +53,7 @@ public class CameraController : MonoBehaviour
             rbody.velocity = newVel;
         }
 
-        rbody.velocity *= Mathf.Abs(horizontalMovement);
+        rbody.velocity *= Mathf.Abs(horizontalMovement);*/
 
         // When the left mouse button is clicked, it will check if the user attemppted to click on something
         // Source: https://docs.unity3d.com/ScriptReference/Input.GetMouseButton.html
@@ -68,6 +73,7 @@ public class CameraController : MonoBehaviour
                 else if (hit.collider.gameObject.tag == "Brick")
                 {
                     Destroy(hit.collider.gameObject, 1);
+                    gameManager.GetComponent<GameManagerScript>().addBrickPoints();
                 }
             }
 

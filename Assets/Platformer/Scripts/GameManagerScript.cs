@@ -11,7 +11,7 @@ public class GameManagerScript : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI skillText;
 
-    public int levelTime = 10;
+    public int levelTime = 100;
     public int coinCount = 0;
     public int currentScore = 0;
     public bool levelCompleted = false;
@@ -59,5 +59,10 @@ public class GameManagerScript : MonoBehaviour
     {
         coinCount++;
         currentScore += 200;
+    }
+
+    public void addBrickPoints()
+    {
+        currentScore += 100;
     }
 }

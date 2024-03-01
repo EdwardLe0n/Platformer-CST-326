@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterController : MonoBehaviour
 {
 
-    public float speed = 10f;
+    public float speed = 2f;
     public float maxSpeed = 10f;
     public float jumpImpulse = 30f;
     public float jumpBoost = 5f;
@@ -34,12 +34,32 @@ public class CharacterController : MonoBehaviour
 
         // Capsule
         Collider col = GetComponent<Collider>();
-        float halfHeight = col.bounds.extents.y/4 + 0.03f;
+        float halfHeight = col.bounds.extents.y;
 
         Vector3 startPoint = transform.position;
+        startPoint.y += 0.01f;
         Vector3 endpoint = startPoint + Vector3.down * halfHeight;
 
-        isGrounded = (Physics.Raycast(startPoint, Vector3.down, halfHeight));
+
+        RaycastHit hit;
+        Ray ray = new Ray(startPoint, endpoint);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject.tag == "QueBlock" || hit.collider.gameObject.tag == "Brick" || hit.collider.gameObject.tag == "WObject")
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                isGrounded = false;
+            }
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
         Color lineColor = (isGrounded) ? Color.red: Color.blue;
         Debug.DrawLine(startPoint, endpoint, lineColor, 0f, true);
 
@@ -59,6 +79,7 @@ public class CharacterController : MonoBehaviour
         {
             Vector3 newVel = rbody.velocity;
             newVel.x = Mathf.Clamp(newVel.x, -maxSpeed, maxSpeed);
+            Debug.Log("Clamped");
             rbody.velocity = newVel;
         }
 
@@ -73,6 +94,13 @@ public class CharacterController : MonoBehaviour
 
         float yaw = (rbody.velocity.x > 0) ? 90 : -90;
         transform.rotation = Quaternion.Euler(0f, yaw, 0f);
+
+        float xSpeed = System.Math.Abs(rbody.velocity.x);
+
+        Animator anim = GetComponent<Animator>();
+
+        anim.SetFloat("Speed", xSpeed);
+        anim.SetBool("In Air", !isGrounded);
 
     }
 }
